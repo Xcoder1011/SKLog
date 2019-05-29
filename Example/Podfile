@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'SKLog_Example' do
+  pod 'SKLog', :path => '../'
+
+  target 'SKLog_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
