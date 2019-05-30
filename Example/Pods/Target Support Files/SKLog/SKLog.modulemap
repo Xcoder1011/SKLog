@@ -1,0 +1,6 @@
+framework module SKLog {
+  umbrella header "SKLog-umbrella.h"
+
+  export *
+  module * { export * }
+}

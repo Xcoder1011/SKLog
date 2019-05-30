@@ -1,0 +1,22 @@
+{
+  "name": "SKLog",
+  "version": "0.1.0",
+  "summary": "A short description of SKLog.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Xcoder1011/SKLog",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Xcoder1011": "wushangkun@chelun.com"
+  },
+  "source": {
+    "git": "https://github.com/Xcoder1011/SKLog.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SKLog/Classes/**/*"
+}

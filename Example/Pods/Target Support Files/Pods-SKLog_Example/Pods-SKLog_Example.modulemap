@@ -1,0 +1,6 @@
+framework module Pods_SKLog_Example {
+  umbrella header "Pods-SKLog_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
