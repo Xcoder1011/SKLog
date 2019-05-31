@@ -7,6 +7,8 @@
 
 ## Example
 
+iOS Very Lightweight Logging System.
+
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
@@ -22,7 +24,7 @@ pod 'SKLog'
 
 ## Author
 
-Xcoder1011, wushangkun@chelun.com
+Xcoder1011, shagnkunwu@msn.com
 
 ## License
 

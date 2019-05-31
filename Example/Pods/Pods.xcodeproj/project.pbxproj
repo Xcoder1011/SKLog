@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04C0C515422B57114C3FFC8AF1E09C64 /* ReplaceMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 323ADEBC1BD9A9CD247C6943193AF193 /* ReplaceMe.m */; };
-		24EE925C593131E887B62AE5C2DE76A5 /* SKLog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BFCAECC187A0FDDA8E29AD56D1A37729 /* SKLog-dummy.m */; };
-		262B7B92D91A6676A26FEE05EEC22278 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		26F71D4494002CE01F46110BC1F6F460 /* SKLog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D60AAB2850DB35B9DAE4B61A0D38DE57 /* SKLog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41AB7DDA45A7C071095E7E512875E19A /* Pods-SKLog_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D337518D1B659237B2FD3869789C9F13 /* Pods-SKLog_Example-dummy.m */; };
-		620D9AC1DA0BE593A5C8DE1F2E6FE69B /* SKLog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A3C99C4A0266526BAAC12DB74C0FED6D /* SKLog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64FC92F63A8A818D7A02BA039AF9D3CC /* SKLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7180EE1BED37AD42DA421E8A8C65BEBB /* SKLogger.m */; };
 		A5C78A4EA040786CADB1EDAEFAA08EAE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		AB3158BC9F08E6EB4F5C3530F8EB9037 /* Pods-SKLog_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 95D46C3A7264EB3A195DD83E3FFFBDAD /* Pods-SKLog_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B09FDEB83E6AE519D557B30732417417 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		BEA79E18E6A74CEAC30B244B6EB5424A /* SKLog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E96B3D89BB2B1594ECB73FE6F7F8AE /* SKLog-dummy.m */; };
 		CFDA5F3C36F936B4688386AA7F3CFAFC /* Pods-SKLog_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A5484F2796BEEC8A81EC76C5207A7F4F /* Pods-SKLog_Tests-dummy.m */; };
 		E323AB708D96841D1EDB38244281B2A3 /* Pods-SKLog_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC4673D140414F16FE63195EA51C54C /* Pods-SKLog_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8EA4F075B9669158F73AF4C731D14AD /* SKLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 05CCA0194AB5C78650C0AD902DB19CC3 /* SKLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F697DDF569D83AB2EC487472E56901EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,37 +38,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05CCA0194AB5C78650C0AD902DB19CC3 /* SKLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SKLogger.h; path = SKLog/Classes/SKLogger.h; sourceTree = "<group>"; };
 		085B9AC29F6748A5CA0ED1D5EA288765 /* Pods-SKLog_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SKLog_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		0CB978CFAEA545D1723F1C23C3F05C29 /* Pods-SKLog_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SKLog_Example.release.xcconfig"; sourceTree = "<group>"; };
 		0ECFE6DCB3EAACEA461680147248F621 /* Pods-SKLog_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SKLog_Tests-Info.plist"; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		323ADEBC1BD9A9CD247C6943193AF193 /* ReplaceMe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ReplaceMe.m; path = SKLog/Classes/ReplaceMe.m; sourceTree = "<group>"; };
 		3D85D17ED18B451E1EC0EEE75BD94B0C /* Pods-SKLog_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SKLog_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		3E09DE8203A92B949CDEED56BE277113 /* SKLog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SKLog.xcconfig; sourceTree = "<group>"; };
 		403D5CF1AF2AD74141A16498169651CE /* Pods-SKLog_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SKLog_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		48A333B33AB7D1289AC275470AD21F2F /* SKLog-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SKLog-Info.plist"; sourceTree = "<group>"; };
 		555C297A30149551FFC2A470915894B8 /* Pods-SKLog_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SKLog_Tests.modulemap"; sourceTree = "<group>"; };
-		61DF2ACA5B6EB56D7EE06AB508CB9EFD /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5B11340C4A81282D7DF1128501659406 /* SKLog-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SKLog-Info.plist"; sourceTree = "<group>"; };
 		6B93897632B05087D3D285F631A21352 /* Pods-SKLog_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SKLog_Example-frameworks.sh"; sourceTree = "<group>"; };
 		7090E98812A65CB0AC3A99D3DDAB4DC8 /* Pods-SKLog_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SKLog_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		7180EE1BED37AD42DA421E8A8C65BEBB /* SKLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SKLogger.m; path = SKLog/Classes/SKLogger.m; sourceTree = "<group>"; };
 		7A5860037CEE146403BA3004BD655E7F /* Pods-SKLog_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SKLog_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		80B4358D271B66B872EE79E960AC5392 /* SKLog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SKLog.xcconfig; sourceTree = "<group>"; };
-		84FAFC1408AC1296E4C5CA2534ED6D29 /* Pods_SKLog_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKLog_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D9811BCE20C93B8CCBCFBC8E953CE74 /* SKLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SKLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84FAFC1408AC1296E4C5CA2534ED6D29 /* Pods_SKLog_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SKLog_Tests.framework; path = "Pods-SKLog_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D9811BCE20C93B8CCBCFBC8E953CE74 /* SKLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SKLog.framework; path = SKLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95D46C3A7264EB3A195DD83E3FFFBDAD /* Pods-SKLog_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SKLog_Tests-umbrella.h"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A3C99C4A0266526BAAC12DB74C0FED6D /* SKLog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKLog-umbrella.h"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A5484F2796BEEC8A81EC76C5207A7F4F /* Pods-SKLog_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SKLog_Tests-dummy.m"; sourceTree = "<group>"; };
-		BFCAECC187A0FDDA8E29AD56D1A37729 /* SKLog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SKLog-dummy.m"; sourceTree = "<group>"; };
-		C3148FEDC935283ABB486F6249DBBAA4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		AE6054B46E6427DF9B7BB1B552E73FF4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		BA3AF721DCD38650B31FAB4C12095F02 /* SKLog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SKLog.modulemap; sourceTree = "<group>"; };
 		C66F25234F8E28C850FF204D79AAC77C /* Pods-SKLog_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SKLog_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		CEE02368A95BDAD97B0945D2F7E43FFF /* Pods_SKLog_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKLog_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2C4FA6F2ABCD8164011374F1734C87A /* SKLog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SKLog.modulemap; sourceTree = "<group>"; };
+		C9E96B3D89BB2B1594ECB73FE6F7F8AE /* SKLog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SKLog-dummy.m"; sourceTree = "<group>"; };
+		CEE02368A95BDAD97B0945D2F7E43FFF /* Pods_SKLog_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SKLog_Example.framework; path = "Pods-SKLog_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D337518D1B659237B2FD3869789C9F13 /* Pods-SKLog_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SKLog_Example-dummy.m"; sourceTree = "<group>"; };
-		DE650CE545D43248CF3F2F438BB2B514 /* SKLog.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SKLog.podspec; sourceTree = "<group>"; tabWidth = 2; };
+		D34A874E236634E4FEA4C73036B0C559 /* SKLog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKLog-prefix.pch"; sourceTree = "<group>"; };
+		D60AAB2850DB35B9DAE4B61A0D38DE57 /* SKLog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKLog-umbrella.h"; sourceTree = "<group>"; };
 		E475FBF6131B57D65ADE13B93CD1ACC3 /* Pods-SKLog_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SKLog_Example-Info.plist"; sourceTree = "<group>"; };
+		EAEE4D9191A4A1D75B0F8662E089D9B0 /* SKLog.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = SKLog.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EDC4673D140414F16FE63195EA51C54C /* Pods-SKLog_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SKLog_Example-umbrella.h"; sourceTree = "<group>"; };
+		EDDA20082EEB7B0571D1B7071A05E6AC /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		F201AE1E9F95E848DCA92310B7583E31 /* Pods-SKLog_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SKLog_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		F49C4EFF930EDEF5428965A95B5528BE /* SKLog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKLog-prefix.pch"; sourceTree = "<group>"; };
 		F7F93547F60BA5C77BAE248EB45A02F1 /* Pods-SKLog_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SKLog_Example.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,35 +90,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F4C56C184AE5447C65C10CF98FBD5D52 /* Frameworks */ = {
+		933B6B2BD5ABE48A87553FB1454B0F15 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				262B7B92D91A6676A26FEE05EEC22278 /* Foundation.framework in Frameworks */,
+				F697DDF569D83AB2EC487472E56901EB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0F0AED4FE289AEA2C5262C4651381410 /* Support Files */ = {
+		21A60CA1DF6E3A4F94BBD39C6E1705AE /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D2C4FA6F2ABCD8164011374F1734C87A /* SKLog.modulemap */,
-				80B4358D271B66B872EE79E960AC5392 /* SKLog.xcconfig */,
-				BFCAECC187A0FDDA8E29AD56D1A37729 /* SKLog-dummy.m */,
-				48A333B33AB7D1289AC275470AD21F2F /* SKLog-Info.plist */,
-				F49C4EFF930EDEF5428965A95B5528BE /* SKLog-prefix.pch */,
-				A3C99C4A0266526BAAC12DB74C0FED6D /* SKLog-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/SKLog";
-			sourceTree = "<group>";
-		};
-		1B153C362E48F2C15404882F2F362506 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				EDFBC7560B442EC7974C7B0D473E31B4 /* SKLog */,
+				A4DCA1359F41DA7ED956054E84ACDB93 /* SKLog */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -129,6 +117,20 @@
 				8D9811BCE20C93B8CCBCFBC8E953CE74 /* SKLog.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		4488EAFC5E57DD8D61CD6699F417BBC4 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BA3AF721DCD38650B31FAB4C12095F02 /* SKLog.modulemap */,
+				3E09DE8203A92B949CDEED56BE277113 /* SKLog.xcconfig */,
+				C9E96B3D89BB2B1594ECB73FE6F7F8AE /* SKLog-dummy.m */,
+				5B11340C4A81282D7DF1128501659406 /* SKLog-Info.plist */,
+				D34A874E236634E4FEA4C73036B0C559 /* SKLog-prefix.pch */,
+				D60AAB2850DB35B9DAE4B61A0D38DE57 /* SKLog-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/SKLog";
 			sourceTree = "<group>";
 		};
 		75950353343A5A615159A898904AD576 /* Pods-SKLog_Example */ = {
@@ -148,14 +150,16 @@
 			path = "Target Support Files/Pods-SKLog_Example";
 			sourceTree = "<group>";
 		};
-		8F6434D5CEF6D2963DFE2C5E9EF4C923 /* Pod */ = {
+		A4DCA1359F41DA7ED956054E84ACDB93 /* SKLog */ = {
 			isa = PBXGroup;
 			children = (
-				C3148FEDC935283ABB486F6249DBBAA4 /* LICENSE */,
-				61DF2ACA5B6EB56D7EE06AB508CB9EFD /* README.md */,
-				DE650CE545D43248CF3F2F438BB2B514 /* SKLog.podspec */,
+				05CCA0194AB5C78650C0AD902DB19CC3 /* SKLogger.h */,
+				7180EE1BED37AD42DA421E8A8C65BEBB /* SKLogger.m */,
+				E3D3502767E9D13569ED9D2271E22856 /* Pod */,
+				4488EAFC5E57DD8D61CD6699F417BBC4 /* Support Files */,
 			);
-			name = Pod;
+			name = SKLog;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
@@ -195,7 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				1B153C362E48F2C15404882F2F362506 /* Development Pods */,
+				21A60CA1DF6E3A4F94BBD39C6E1705AE /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				2CFEB65E61F04476B4394CA259891EFC /* Products */,
 				C08B2D1BC5E3B39893CD6D002EA2BB73 /* Targets Support Files */,
@@ -210,25 +214,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EDFBC7560B442EC7974C7B0D473E31B4 /* SKLog */ = {
+		E3D3502767E9D13569ED9D2271E22856 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				323ADEBC1BD9A9CD247C6943193AF193 /* ReplaceMe.m */,
-				8F6434D5CEF6D2963DFE2C5E9EF4C923 /* Pod */,
-				0F0AED4FE289AEA2C5262C4651381410 /* Support Files */,
+				EDDA20082EEB7B0571D1B7071A05E6AC /* LICENSE */,
+				AE6054B46E6427DF9B7BB1B552E73FF4 /* README.md */,
+				EAEE4D9191A4A1D75B0F8662E089D9B0 /* SKLog.podspec */,
 			);
-			name = SKLog;
-			path = ../..;
+			name = Pod;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		5D75573A9A80F3E67CD07EBA7C700F02 /* Headers */ = {
+		7B6ECCDF323D74A90B78BDC8CDCC7492 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				620D9AC1DA0BE593A5C8DE1F2E6FE69B /* SKLog-umbrella.h in Headers */,
+				26F71D4494002CE01F46110BC1F6F460 /* SKLog-umbrella.h in Headers */,
+				E8EA4F075B9669158F73AF4C731D14AD /* SKLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,12 +257,12 @@
 /* Begin PBXNativeTarget section */
 		2F2FD769F08A3F2921A0820480D506AB /* SKLog */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4ABBE2B9A352A516B252E7806E16EC7F /* Build configuration list for PBXNativeTarget "SKLog" */;
+			buildConfigurationList = 0028A5E4E553CE4EADCB0B8DA199D6C0 /* Build configuration list for PBXNativeTarget "SKLog" */;
 			buildPhases = (
-				5D75573A9A80F3E67CD07EBA7C700F02 /* Headers */,
-				3D33D8E9ED1AA40BCB3BF088DAC6DF8A /* Sources */,
-				F4C56C184AE5447C65C10CF98FBD5D52 /* Frameworks */,
-				AA177FC7739C822A5A7437589E185A3B /* Resources */,
+				7B6ECCDF323D74A90B78BDC8CDCC7492 /* Headers */,
+				611D502888571E97A00750A5619A0C35 /* Sources */,
+				933B6B2BD5ABE48A87553FB1454B0F15 /* Frameworks */,
+				3E74D77625289F447525E7B922D091AA /* Resources */,
 			);
 			buildRules = (
 			);
@@ -336,14 +340,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8793F98E6302546ED597BBB93E3579D7 /* Resources */ = {
+		3E74D77625289F447525E7B922D091AA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AA177FC7739C822A5A7437589E185A3B /* Resources */ = {
+		8793F98E6302546ED597BBB93E3579D7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -368,12 +372,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D33D8E9ED1AA40BCB3BF088DAC6DF8A /* Sources */ = {
+		611D502888571E97A00750A5619A0C35 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04C0C515422B57114C3FFC8AF1E09C64 /* ReplaceMe.m in Sources */,
-				24EE925C593131E887B62AE5C2DE76A5 /* SKLog-dummy.m in Sources */,
+				BEA79E18E6A74CEAC30B244B6EB5424A /* SKLog-dummy.m in Sources */,
+				64FC92F63A8A818D7A02BA039AF9D3CC /* SKLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +407,67 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		06ABE4423F8EF580E6FA277156B4154E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E09DE8203A92B949CDEED56BE277113 /* SKLog.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SKLog/SKLog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SKLog/SKLog-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SKLog/SKLog.modulemap";
+				PRODUCT_MODULE_NAME = SKLog;
+				PRODUCT_NAME = SKLog;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		16D7C32218A4CB9870F8A156A4676B1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E09DE8203A92B949CDEED56BE277113 /* SKLog.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SKLog/SKLog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SKLog/SKLog-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SKLog/SKLog.modulemap";
+				PRODUCT_MODULE_NAME = SKLog;
+				PRODUCT_NAME = SKLog;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		4BE66A09A74FD25164AAB3C2645B9B93 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -456,7 +521,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -593,36 +659,6 @@
 			};
 			name = Debug;
 		};
-		CFF02060316B9CBB5199E5F88376BF19 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80B4358D271B66B872EE79E960AC5392 /* SKLog.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SKLog/SKLog-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SKLog/SKLog-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SKLog/SKLog.modulemap";
-				PRODUCT_MODULE_NAME = SKLog;
-				PRODUCT_NAME = SKLog;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		F8DF089D535A22C6F4A4580A204BBD7C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 403D5CF1AF2AD74141A16498169651CE /* Pods-SKLog_Example.debug.xcconfig */;
@@ -690,40 +726,18 @@
 			};
 			name = Release;
 		};
-		FDE51BAADBEE1BBEC1FBBD80C8A38D20 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80B4358D271B66B872EE79E960AC5392 /* SKLog.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SKLog/SKLog-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SKLog/SKLog-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SKLog/SKLog.modulemap";
-				PRODUCT_MODULE_NAME = SKLog;
-				PRODUCT_NAME = SKLog;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0028A5E4E553CE4EADCB0B8DA199D6C0 /* Build configuration list for PBXNativeTarget "SKLog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16D7C32218A4CB9870F8A156A4676B1A /* Debug */,
+				06ABE4423F8EF580E6FA277156B4154E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		32BED50DD5FAED21A7DAD9BBB8D9AB47 /* Build configuration list for PBXNativeTarget "Pods-SKLog_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -738,15 +752,6 @@
 			buildConfigurations = (
 				7EF7227D9B20A1D549000096ACCB23D7 /* Debug */,
 				4BE66A09A74FD25164AAB3C2645B9B93 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4ABBE2B9A352A516B252E7806E16EC7F /* Build configuration list for PBXNativeTarget "SKLog" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CFF02060316B9CBB5199E5F88376BF19 /* Debug */,
-				FDE51BAADBEE1BBEC1FBBD80C8A38D20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
