@@ -7,15 +7,30 @@
 
 #import "SKLogger.h"
 
-void SKLog(NSInteger type, NSString *format, ...) {
+void SKDebugLog(NSInteger type, SKLocation location, NSString *format, ...) {
     
-    NSString *string = nil;
-    va_list argList;
-    va_start(argList, format);
-    string = [[NSString alloc] initWithFormat:format arguments:argList];
-    string = [NSString stringWithFormat:@"Function:%s Line:%d info:%@",__func__,__LINE__,string];
-    NSLog(@"%@", string);
-    va_end(argList);
+    if ([SKLogger sharedInstance].enableMode) {
+        NSString *string = nil;
+        va_list argList;
+        va_start(argList, format);
+        string = [[NSString alloc] initWithFormat:format arguments:argList];
+        [[SKLogger sharedInstance] parseStringWithLocation:location type:type string:string];
+        va_end(argList);
+    }
+}
+
+static inline NSString *getFileNameAndFunctionFromLocation(SKLocation location)
+{
+    NSString *string;
+    SKLocation initialLocation = SKLocationMake("", 0, "");
+    if (!memcmp(&location, &initialLocation, sizeof(location))) {
+        string = @"";
+    } else {
+        NSString *path = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:location.file length:strlen(location.file)];
+        NSString *filename = [path lastPathComponent];
+        string = [NSString stringWithFormat:@"%@ LINE:%d %s", filename, location.line, location.func];
+    }
+    return string;
 }
 
 static dispatch_queue_t writeLogQueue;
@@ -23,6 +38,7 @@ static dispatch_queue_t writeLogQueue;
 @interface SKLogger ()
 
 @property (nonatomic, copy, readwrite) NSString *logsDirectory;
+@property (nonatomic, assign , readwrite) BOOL enableMode;
 
 @end
 
@@ -54,8 +70,11 @@ static dispatch_queue_t writeLogQueue;
 
 - (void)configLogPath {
     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [NSLocale currentLocale];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
+    _logDateFormatter = dateFormatter;
     [self logsDirectory];
-    
 }
 
 - (NSString *)logsDirectory {
@@ -81,6 +100,16 @@ static dispatch_queue_t writeLogQueue;
 
 - (void)enable {
     
+    _enableMode = YES;
+}
+
+- (void)parseStringWithLocation:(SKLocation)loc type:(NSInteger)type string:(NSString *)string {
+    
+    NSString *timestamp = [self.logDateFormatter stringFromDate:[NSDate date]];
+    NSString *string2 = [NSString stringWithFormat:@"%@ TYPE:%zd %@ >>>%@",timestamp, type, getFileNameAndFunctionFromLocation(loc), string];
+#ifdef DEBUG
+    fprintf (stderr, "%s\n", [string2 UTF8String]);
+#endif
 }
 
 @end

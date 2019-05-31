@@ -19,9 +19,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    SKLog(3, @"你好");
-
-    SKLog(0, @"NIHAO");
+    SKLog(@"默认的log使用方式");
+    
+    SKLogg(999, @"我这是一种type==999 的Log");
+    
 }
 
 - (void)didReceiveMemoryWarning

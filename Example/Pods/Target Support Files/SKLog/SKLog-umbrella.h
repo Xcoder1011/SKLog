@@ -11,6 +11,7 @@
 #endif
 
 #import "SKLogger.h"
+#import "SKLogHeader.h"
 
 FOUNDATION_EXPORT double SKLogVersionNumber;
 FOUNDATION_EXPORT const unsigned char SKLogVersionString[];

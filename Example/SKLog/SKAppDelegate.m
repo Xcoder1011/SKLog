@@ -15,6 +15,10 @@
     // Override point for customization after application launch.
     
     [[SKLogger sharedInstance] enable];
+  
+//    SKLog(@"你好");
+//
+//    SKLog(@"哈哈哈哈");
 
     return YES;
 }
