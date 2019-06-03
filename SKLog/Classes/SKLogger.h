@@ -34,7 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 支持自定义的时间格式
 @property (nonatomic, strong) NSDateFormatter *logDateFormatter;
 
-/// 存储log日志的文件目录
+/// 记录的文件夹最大数 ，default = 10
+@property (atomic, assign, readwrite) NSUInteger maximumNumberOfLogsDirectories;
+
+/// 存储log日志的文件目
 @property (nonatomic, copy, readonly) NSString *logsDirectory;
 
 /// 本次启动创建的日志文件夹路径
@@ -53,3 +56,17 @@ FOUNDATION_EXTERN void SKDebugLog(NSInteger type, SKLocation location, NSString 
 @end
 
 NS_ASSUME_NONNULL_END
+
+
+/// For Example SKLog Path :
+
+
+///  .../SKLog
+
+///  .../SKLog/2019-05-31-14:01:58/
+///  .../SKLog/2019-05-31-14:03:58/
+///  .../SKLog/2019-05-31-14:04:11/
+
+///  .../SKLog/2019-05-31-14:01:58/2019-05-31-14:01:58_0.log
+///  .../SKLog/2019-05-31-14:01:58/2019-05-31-14:01:58_1.log
+///  .../SKLog/2019-05-31-14:01:58/2019-05-31-14:01:58_2.log
