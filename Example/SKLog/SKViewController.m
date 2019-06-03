@@ -23,6 +23,9 @@
     
     SKLogg(999, @"我这是一种type==999 的Log");
     
+    for (NSInteger i = 0; i < 1000; i ++ ) {
+        SKLogg(83, @"我这是 i = %zd",i);
+    }
 }
 
 - (void)didReceiveMemoryWarning

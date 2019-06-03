@@ -37,6 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 存储log日志的文件目录
 @property (nonatomic, copy, readonly) NSString *logsDirectory;
 
+/// 本次启动创建的日志文件夹路径
+@property (nonatomic, copy, readonly) NSString *currentLogsDirectory;
+
 /// 日志模式是否打开
 @property (nonatomic, assign , readonly) BOOL enableMode;
 

@@ -38,7 +38,10 @@ static dispatch_queue_t writeLogQueue;
 @interface SKLogger ()
 
 @property (nonatomic, copy, readwrite) NSString *logsDirectory;
+@property (nonatomic, copy, readwrite) NSString *currentLogsDirectory; // launch time
 @property (nonatomic, assign , readwrite) BOOL enableMode;
+// 记录当前 的启动时间
+@property (nonatomic, copy) NSString *currentlaunchTime; // 2019-06-03-14:01:58
 
 @end
 
@@ -75,6 +78,7 @@ static dispatch_queue_t writeLogQueue;
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
     _logDateFormatter = dateFormatter;
     [self logsDirectory];
+    [self currentLogsDirectory];
 }
 
 - (NSString *)logsDirectory {
@@ -92,9 +96,10 @@ static dispatch_queue_t writeLogQueue;
                 NSLog(@"create logsDirectory error.");
             }
         }
+        NSLog(@"logsDirectory = %@",_logsDirectory);
+        // logsDirectory = /var/mobile/Containers/Data/Application/FDB11EAC-2B52-4BE9-B50F-DFDDDFF06A5E/Documents/SKLog
     }
-    NSLog(@"logsDirectory = %@",_logsDirectory);
-    // logsDirectory = /var/mobile/Containers/Data/Application/FDB11EAC-2B52-4BE9-B50F-DFDDDFF06A5E/Documents/SKLog
+   
     return _logsDirectory;
 }
 
@@ -103,13 +108,53 @@ static dispatch_queue_t writeLogQueue;
     _enableMode = YES;
 }
 
+- (NSString *)currentLogsDirectory {
+    if (!_currentLogsDirectory) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.locale = [NSLocale currentLocale];
+        dateFormatter.dateFormat = @"yyyy-MM-dd-HH:mm:ss";
+        NSString *timestamp = [dateFormatter stringFromDate:[NSDate date]];
+        _currentlaunchTime = timestamp;
+        _currentLogsDirectory = [self.logsDirectory stringByAppendingPathComponent:timestamp];
+        NSError *error = nil;
+        if (![[NSFileManager defaultManager] fileExistsAtPath:_currentLogsDirectory]) {
+            [[NSFileManager defaultManager] createDirectoryAtPath:_currentLogsDirectory
+                                      withIntermediateDirectories:YES
+                                                       attributes:nil
+                                                            error:&error];
+            if (error) {
+                NSLog(@"create currentLogsDirectory error.");
+            }
+        }
+        NSLog(@"currentLogsDirectory = %@",_currentLogsDirectory);
+        // currentLogsDirectory = /Users/kun/Library/Developer/CoreSimulator/Devices/F85DCE55-9D55-4C35-9F1F-5772E9B78608/data/Containers/Data/Application/6295454C-BA2E-47FE-AE67-3194561008D7/Documents/SKLog/2019-06-03-14:01:58
+    }
+    return _currentLogsDirectory;
+}
+
+
 - (void)parseStringWithLocation:(SKLocation)loc type:(NSInteger)type string:(NSString *)string {
     
-    NSString *timestamp = [self.logDateFormatter stringFromDate:[NSDate date]];
-    NSString *string2 = [NSString stringWithFormat:@"%@ TYPE:%zd %@ >>>%@",timestamp, type, getFileNameAndFunctionFromLocation(loc), string];
+    dispatch_async(writeLogQueue, ^{
+        
+        NSString *timestamp = [self.logDateFormatter stringFromDate:[NSDate date]];
+        NSString *formatstring = [NSString stringWithFormat:@"%@ TYPE:%zd %@ >>>%@",timestamp, type, getFileNameAndFunctionFromLocation(loc), string];
 #ifdef DEBUG
-    fprintf (stderr, "%s\n", [string2 UTF8String]);
+        fprintf (stderr, "%s\n", [formatstring UTF8String]);
 #endif
+        
+        NSString *fileName = [NSString stringWithFormat:@"%@_%zd.log", self.currentlaunchTime,type];
+        NSString *filePath = [self.currentLogsDirectory stringByAppendingPathComponent:fileName];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+            [[NSFileManager defaultManager] createFileAtPath:filePath contents:nil attributes:nil];
+            NSLog(@" ========== createFileAtPath filePath = %@",filePath);
+        }
+        
+        NSFileHandle *fileHandler = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
+        [fileHandler seekToEndOfFile];
+        [fileHandler writeData:[formatstring dataUsingEncoding:NSUTF8StringEncoding]];
+        [fileHandler closeFile];
+    });
 }
 
 @end
