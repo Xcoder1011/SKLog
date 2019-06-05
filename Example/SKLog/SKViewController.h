@@ -8,6 +8,8 @@
 
 @import UIKit;
 
-@interface SKViewController : UIViewController
+@interface SKViewController : UITableViewController
+
+@property (nonatomic, strong) NSArray *dataArray;
 
 @end

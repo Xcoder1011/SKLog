@@ -23,6 +23,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		BCCF09CB22A78E7600F0B3B2 /* SKLogTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCF09CA22A78E7600F0B3B2 /* SKLogTextViewController.m */; };
 		CB590D396331467C7BB21C53 /* Pods_SKLog_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3046B95AF62901A1A290986B /* Pods_SKLog_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,8 @@
 		7663BF6B7D62436979908240 /* Pods_SKLog_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKLog_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		816301FFC74DC0A046F47AD5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BCCF09C922A78E7600F0B3B2 /* SKLogTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKLogTextViewController.h; sourceTree = "<group>"; };
+		BCCF09CA22A78E7600F0B3B2 /* SKLogTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKLogTextViewController.m; sourceTree = "<group>"; };
 		E9989611FE58A83040237818 /* Pods-SKLog_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKLog_Example.debug.xcconfig"; path = "Target Support Files/Pods-SKLog_Example/Pods-SKLog_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +140,8 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* SKViewController.h */,
 				6003F5A6195388D20070C39A /* SKViewController.m */,
+				BCCF09C922A78E7600F0B3B2 /* SKLogTextViewController.h */,
+				BCCF09CA22A78E7600F0B3B2 /* SKLogTextViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -367,6 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCCF09CB22A78E7600F0B3B2 /* SKLogTextViewController.m in Sources */,
 				6003F59E195388D20070C39A /* SKAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* SKViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,

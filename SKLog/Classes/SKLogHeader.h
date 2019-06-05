@@ -54,4 +54,25 @@ static inline BOOL sk_DeleteAllFileAtPath(NSString *path)
 }
 
 
+static inline NSDictionary *sk_AppBaseInfos() {
+    
+    NSMutableDictionary *mdict = [[NSMutableDictionary alloc] init];
+    NSDictionary *infoDic = [NSBundle mainBundle].infoDictionary;
+    [mdict setObject:[UIDevice currentDevice].name ?: @"Unknown" forKey:@"Phone Name"];
+    [mdict setObject:infoDic[@"CFBundleShortVersionString"]?:@"Unknown" forKey:@"App Version"];
+    [mdict setObject:[UIDevice currentDevice].systemName ?: @"Unknown" forKey:@"System Name"];
+    [mdict setObject:[UIDevice currentDevice].systemVersion ?: @"Unknown" forKey:@"System Version"];
+    [mdict setObject:infoDic[@"CFBundleIdentifier"] ?:@"Unknown" forKey:@"BundleID"];
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    [mdict setObject:[NSString stringWithFormat:@"%ld * %ld",(long)(width * [UIScreen mainScreen].scale),(long)(height * [UIScreen mainScreen].scale)] forKey:@"Screen Resolution"];
+
+    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:nil];
+    unsigned long long totalDisk = [[attributes objectForKey:NSFileSystemSize] unsignedLongLongValue];
+    unsigned long long freeDisk = [[attributes objectForKey:NSFileSystemFreeSize] unsignedLongLongValue];
+    [mdict setObject:[NSString stringWithFormat:@"%@ / %@", [NSByteCountFormatter stringFromByteCount:freeDisk countStyle:NSByteCountFormatterCountStyleFile],[NSByteCountFormatter stringFromByteCount:totalDisk countStyle:NSByteCountFormatterCountStyleFile]] forKey:@"Disk"];
+
+    return [mdict copy];
+}
 #endif /* SKLogHeader_h */

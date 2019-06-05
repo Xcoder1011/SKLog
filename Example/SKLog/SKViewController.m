@@ -7,6 +7,7 @@
 //
 
 #import "SKViewController.h"
+#import "SKLogTextViewController.h"
 
 @interface SKViewController ()
 
@@ -17,26 +18,61 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    
-    SKLog(@"默认的log使用方式");
-    
-    SKLogg(999, @"我这是一种type==999 的Log");
-    
-    for (NSInteger i = 0; i < 100; i ++ ) {
-        SKLogg(83, @"我这是 i = %zd",i);
+
+    if (!_dataArray) {
+        _dataArray = [SKLogger sortedLogDirectoriePaths];
     }
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSLog(@"sortedLogDirectorieNames = %@",[SKLogger sortedLogDirectorieNames]);
-        NSLog(@"sortedLogDirectoriePaths = %@",[SKLogger sortedLogDirectoriePaths]);
-    });
+    self.title = @"SKLog";
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return _dataArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *cellId = @"cellID";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+    }
+    NSString *content = _dataArray[indexPath.row];
+    if ([content containsString:@"/"]) {
+        content = [[content componentsSeparatedByString:@"/"] lastObject];
+    }
+    cell.textLabel.text = content;
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 50;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+   
+    NSString *path = _dataArray[indexPath.row];
+    
+    if ([path containsString:@"/"]) {
+       
+        NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
+        SKViewController *controller = [[SKViewController alloc] init];
+        controller.dataArray = files;
+        [self.navigationController pushViewController:controller animated:YES];
+        
+    } else if ([path hasSuffix:@".log"] || [path hasSuffix:@".txt"]) {
+        
+        SKLogTextViewController *controller = [[SKLogTextViewController alloc] init];
+        NSString *dirname = [[path componentsSeparatedByString:@"."] firstObject];
+        dirname = [[dirname componentsSeparatedByString:@"_"] firstObject];
+        controller.logPath = [[[SKLogger sharedInstance].logsDirectory stringByAppendingPathComponent:dirname] stringByAppendingPathComponent:path];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    
 }
 
 @end
