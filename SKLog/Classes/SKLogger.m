@@ -43,17 +43,18 @@ static dispatch_queue_t writeLogQueue;
 // 记录当前 的启动时间
 @property (nonatomic, copy) NSString *currentlaunchTime; // 2019-06-03-14:01:58
 
+
 @end
 
 @implementation SKLogger
 
+static id logger = nil;
 + (instancetype)sharedInstance {
-    static id instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[self alloc] init];
+        logger = [[SKLogger alloc] init];
     });
-    return instance;
+    return logger;
 }
 
 + (void)initialize {
@@ -74,16 +75,23 @@ static dispatch_queue_t writeLogQueue;
 }
 
 - (void)configInitial {
+    
     _maximumNumberOfLogsDirectories = 10;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [NSLocale currentLocale];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
+    _logDateFormatter = dateFormatter;
+ 
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    _logDirDateFormatter = dateFormatter;
+    
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew;
     [self addObserver:self forKeyPath:NSStringFromSelector(@selector(maximumNumberOfLogsDirectories)) options:options context:nil];
 }
 
 - (void)configLogPath {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.locale = [NSLocale currentLocale];
-    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
-    _logDateFormatter = dateFormatter;
+    
     [self logsDirectory];
     [self currentLogsDirectory];
 }
@@ -117,10 +125,7 @@ static dispatch_queue_t writeLogQueue;
 
 - (NSString *)currentLogsDirectory {
     if (!_currentLogsDirectory) {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.locale = [NSLocale currentLocale];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        NSString *timestamp = [dateFormatter stringFromDate:[NSDate date]];
+        NSString *timestamp = [_logDirDateFormatter stringFromDate:[NSDate date]];
         _currentlaunchTime = timestamp;
         _currentLogsDirectory = [self.logsDirectory stringByAppendingPathComponent:timestamp];
         NSError *error = nil;
@@ -150,13 +155,26 @@ static dispatch_queue_t writeLogQueue;
         fprintf (stderr, "%s\n", [formatstring UTF8String]);
 #endif
         
+        if (type != 0) {  // type不等于0 的log 也在type_0.log里面记录下来
+            
+            NSString *fileName = [NSString stringWithFormat:@"%@_0.log", self.currentlaunchTime];
+            NSString *filePath = [self.currentLogsDirectory stringByAppendingPathComponent:fileName];
+            if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+                [[NSFileManager defaultManager] createFileAtPath:filePath contents:nil attributes:nil];
+                NSLog(@" ========== create type_0.log path = %@",filePath);
+            }
+            NSFileHandle *fileHandler = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
+            [fileHandler seekToEndOfFile];
+            [fileHandler writeData:[formatstring dataUsingEncoding:NSUTF8StringEncoding]];
+            [fileHandler closeFile];
+        }
+        
         NSString *fileName = [NSString stringWithFormat:@"%@_%zd.log", self.currentlaunchTime,type];
         NSString *filePath = [self.currentLogsDirectory stringByAppendingPathComponent:fileName];
         if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
             [[NSFileManager defaultManager] createFileAtPath:filePath contents:nil attributes:nil];
             NSLog(@" ========== createFileAtPath filePath = %@",filePath);
         }
-        
         NSFileHandle *fileHandler = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
         [fileHandler seekToEndOfFile];
         [fileHandler writeData:[formatstring dataUsingEncoding:NSUTF8StringEncoding]];
@@ -165,16 +183,8 @@ static dispatch_queue_t writeLogQueue;
 }
 
 - (void)deleteOldLogsDirectories {
-    
     NSArray *fileDirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.logsDirectory error:nil];
-    NSArray *sortedFileDirs = [fileDirs sortedArrayUsingComparator:^NSComparisonResult(NSString  * _Nonnull timeDirKey1, NSString * _Nonnull timeDirKey2) {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSDate *date1 = [dateFormatter dateFromString:timeDirKey1];
-        NSDate *date2 = [dateFormatter dateFromString:timeDirKey2];
-        return [date2 compare:date1];  // 时间降序 排序， 时间 由近及远
-    }];
-    
+    NSArray *sortedFileDirs = [self sortedLogDirectorieNames];
     if (fileDirs.count > _maximumNumberOfLogsDirectories) {
         NSUInteger deleteStartIndex = _maximumNumberOfLogsDirectories;
         for (NSUInteger index = deleteStartIndex; index < sortedFileDirs.count ; index ++) {
@@ -205,6 +215,18 @@ static dispatch_queue_t writeLogQueue;
     }
 }
 
+- (NSArray<NSString *> *)sortedLogDirectorieNames {
+    
+    NSArray *fileDirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.logsDirectory error:nil];
+    NSArray *sortedFileDirs = [fileDirs sortedArrayUsingComparator:^NSComparisonResult(NSString  * _Nonnull timeDirKey1, NSString * _Nonnull timeDirKey2) {
+        NSDate *date1 = [self.logDirDateFormatter dateFromString:timeDirKey1];
+        NSDate *date2 = [self.logDirDateFormatter dateFromString:timeDirKey2];
+        return [date2 compare:date1];  // 时间降序 排序， 时间 由近及远
+    }];
+    
+    return sortedFileDirs;
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change
                        context:(void *)context {
@@ -222,6 +244,35 @@ static dispatch_queue_t writeLogQueue;
             [self deleteOldLogsDirectories];
         });
     }
+}
+
+#pragma mark -- getter
+
+- (NSArray<NSString *> *)sortedLogDirectoriePaths {
+    
+    NSArray *fileDirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.logsDirectory error:nil];
+    NSArray *sortedFileDirs = [fileDirs sortedArrayUsingComparator:^NSComparisonResult(NSString  * _Nonnull timeDirKey1, NSString * _Nonnull timeDirKey2) {
+        NSDate *date1 = [self.logDirDateFormatter dateFromString:timeDirKey1];
+        NSDate *date2 = [self.logDirDateFormatter dateFromString:timeDirKey2];
+        return [date2 compare:date1];  // 时间降序 排序， 时间 由近及远
+    }];
+    
+    NSMutableArray *directoriePaths = [NSMutableArray arrayWithCapacity:sortedFileDirs.count];
+    [sortedFileDirs enumerateObjectsUsingBlock:^(NSString *  _Nonnull dirName, NSUInteger idx, BOOL * _Nonnull stop) {
+        [directoriePaths addObject:[self.logsDirectory stringByAppendingPathComponent:dirName]];
+    }];
+    
+    return [directoriePaths copy];
+}
+
++ (NSArray<NSString *> *)sortedLogDirectorieNames {
+    
+    return [SKLogger sharedInstance].sortedLogDirectorieNames;
+}
+
++ (NSArray<NSString *> *)sortedLogDirectoriePaths {
+    
+    return [SKLogger sharedInstance].sortedLogDirectoriePaths;
 }
 
 - (void)dealloc {

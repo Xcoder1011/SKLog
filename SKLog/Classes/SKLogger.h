@@ -31,13 +31,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (class, nonatomic, strong, readonly) SKLogger *sharedInstance;
 
-/// 支持自定义的时间格式
+/// 排序好的 log文件夹路径
+@property (class, nonatomic, strong, readonly) NSArray <NSString *> *sortedLogDirectoriePaths;
+
+/// 排序好的 log文件夹名称
+@property (class, nonatomic, strong, readonly) NSArray <NSString *> *sortedLogDirectorieNames;
+
+/// 支持自定义的Log时间格式
 @property (nonatomic, strong) NSDateFormatter *logDateFormatter;
+
+/// Log文件夹名称, 默认使用时格式@"yyyy-MM-dd HH:mm:ss"
+@property (nonatomic, strong) NSDateFormatter *logDirDateFormatter;
 
 /// 记录的文件夹最大数 ，default = 10
 @property (atomic, assign, readwrite) NSUInteger maximumNumberOfLogsDirectories;
 
-/// 存储log日志的文件目
+/// 存储log日志的文件夹路径
 @property (nonatomic, copy, readonly) NSString *logsDirectory;
 
 /// 本次启动创建的日志文件夹路径
