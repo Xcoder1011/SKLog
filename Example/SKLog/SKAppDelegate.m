@@ -16,14 +16,10 @@
     
     [[SKLogger sharedInstance] enable];
   
-    SKLog(@"默认的log使用方式");
+    SKLog(@"%@==%@ = %@ -- %@", [NSString stringWithFormat:@"SKAppDelegate"],@"wushangkun", self, self.window.backgroundColor);
     
-    SKLogg(999, @"我这是一种type==999 的Log");
-    
-    for (NSInteger i = 0; i < 100; i ++ ) {
-        SKLogg(83, @"我这是 i = %zd",i);
-    }
-    
+    SKLog(@"默认的log使用方式", @"didFinishLaunchingWithOptions");
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         NSLog(@"sortedLogDirectorieNames = %@",[SKLogger sortedLogDirectorieNames]);
         NSLog(@"sortedLogDirectoriePaths = %@",[SKLogger sortedLogDirectoriePaths]);

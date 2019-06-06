@@ -8,7 +8,7 @@
 #import "SKLogger.h"
 
 void SKDebugLog(NSInteger type, SKLocation location, NSString *format, ...) {
-    
+
     if ([SKLogger sharedInstance].enableMode) {
         NSString *string = nil;
         va_list argList;
@@ -16,6 +16,15 @@ void SKDebugLog(NSInteger type, SKLocation location, NSString *format, ...) {
         string = [[NSString alloc] initWithFormat:format arguments:argList];
         [[SKLogger sharedInstance] parseStringWithLocation:location type:type string:string];
         va_end(argList);
+    }
+}
+
+FOUNDATION_EXTERN void SKLogging(NSInteger type, SKLocation location, NSArray *params) {
+    
+    if ([SKLogger sharedInstance].enableMode) {
+       
+        
+        
     }
 }
 
@@ -28,7 +37,8 @@ static inline NSString *getFileNameAndFunctionFromLocation(SKLocation location)
     } else {
         NSString *path = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:location.file length:strlen(location.file)];
         NSString *filename = [path lastPathComponent];
-        string = [NSString stringWithFormat:@"%@ LINE:%d %s", filename, location.line, location.func];
+        // string = [NSString stringWithFormat:@"%@ LINE:%d %s", filename, location.line, location.func];
+        string = [NSString stringWithFormat:@"%@ :%d", filename, location.line];
     }
     return string;
 }
@@ -77,14 +87,8 @@ static dispatch_queue_t writeLogQueue;
 - (void)configInitial {
     
     _maximumNumberOfLogsDirectories = 10;
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.locale = [NSLocale currentLocale];
-    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
-    _logDateFormatter = dateFormatter;
- 
-    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    _logDirDateFormatter = dateFormatter;
+    _logDateFormatter = [self dateFormatterWith:@"yyyy-MM-dd HH:mm:ss.SSS"];
+    _logDirDateFormatter = [self dateFormatterWith:@"yyyy-MM-dd HH:mm:ss"];
     
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew;
     [self addObserver:self forKeyPath:NSStringFromSelector(@selector(maximumNumberOfLogsDirectories)) options:options context:nil];
@@ -149,7 +153,7 @@ static dispatch_queue_t writeLogQueue;
     dispatch_async(writeLogQueue, ^{
         
         NSString *timestamp = [self.logDateFormatter stringFromDate:[NSDate date]];
-        NSString *formatstring = [NSString stringWithFormat:@"%@ TYPE:%zd %@ >>>%@\r",timestamp, type, getFileNameAndFunctionFromLocation(loc), string];
+        NSString *formatstring = [NSString stringWithFormat:@"%@ TYPE:%zd %@ %@\r",timestamp, type, getFileNameAndFunctionFromLocation(loc), string];
         
         if (type != 0) {  // type不等于0 的log 也在type_0.log里面记录下来
             
@@ -206,6 +210,14 @@ static dispatch_queue_t writeLogQueue;
             }
         }
     }
+}
+
+- (NSDateFormatter *)dateFormatterWith:(NSString *)form {
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [NSLocale currentLocale];
+    dateFormatter.dateFormat = form;
+    return dateFormatter;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object

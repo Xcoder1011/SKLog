@@ -62,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXTERN void SKDebugLog(NSInteger type, SKLocation location, NSString *format, ...);
 
+FOUNDATION_EXTERN void SKLogging(NSInteger type, SKLocation location, NSArray *params);
+
 @end
 
 NS_ASSUME_NONNULL_END
