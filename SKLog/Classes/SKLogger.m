@@ -19,15 +19,6 @@ void SKDebugLog(NSInteger type, SKLocation location, NSString *format, ...) {
     }
 }
 
-FOUNDATION_EXTERN void SKLogging(NSInteger type, SKLocation location, NSArray *params) {
-    
-    if ([SKLogger sharedInstance].enableMode) {
-       
-        
-        
-    }
-}
-
 static inline NSString *getFileNameAndFunctionFromLocation(SKLocation location)
 {
     NSString *string;
@@ -50,9 +41,8 @@ static dispatch_queue_t writeLogQueue;
 @property (nonatomic, copy, readwrite) NSString *logsDirectory;
 @property (nonatomic, copy, readwrite) NSString *currentLogsDirectory;
 @property (nonatomic, assign , readwrite) BOOL enableMode;
-// 记录当前 的启动时间
-@property (nonatomic, copy) NSString *currentlaunchTime; // 2019-06-03-14:01:58
-
+// 记录当前 的启动时间 2019-06-03-14:01:58
+@property (nonatomic, copy) NSString *currentlaunchTime;
 
 @end
 
@@ -115,8 +105,6 @@ static dispatch_queue_t writeLogQueue;
                 NSLog(@"create logsDirectory error.");
             }
         }
-        NSLog(@"logsDirectory = %@",_logsDirectory);
-        // logsDirectory = /var/mobile/Containers/Data/Application/FDB11EAC-2B52-4BE9-B50F-DFDDDFF06A5E/Documents/SKLog
     }
    
     return _logsDirectory;
@@ -142,8 +130,6 @@ static dispatch_queue_t writeLogQueue;
                 NSLog(@"create currentLogsDirectory error.");
             }
         }
-        NSLog(@"currentLogsDirectory = %@",_currentLogsDirectory);
-        // currentLogsDirectory = /Users/kun/Library/Developer/CoreSimulator/Devices/F85DCE55-9D55-4C35-9F1F-5772E9B78608/data/Containers/Data/Application/6295454C-BA2E-47FE-AE67-3194561008D7/Documents/SKLog/2019-06-03-14:01:58
     }
     return _currentLogsDirectory;
 }
@@ -153,30 +139,23 @@ static dispatch_queue_t writeLogQueue;
     dispatch_async(writeLogQueue, ^{
         
         NSString *timestamp = [self.logDateFormatter stringFromDate:[NSDate date]];
-        NSString *formatstring = [NSString stringWithFormat:@"%@ TYPE:%zd %@ %@\r",timestamp, type, getFileNameAndFunctionFromLocation(loc), string];
-        
-        if (type != 0) {  // type不等于0 的log 也在type_0.log里面记录下来
-            
-            NSString *fileName = [NSString stringWithFormat:@"%@_0.txt", self.currentlaunchTime];
-            NSString *filePath = [self.currentLogsDirectory stringByAppendingPathComponent:fileName];
-            if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-                [[NSFileManager defaultManager] createFileAtPath:filePath contents:nil attributes:nil];
-                NSLog(@" ========== create type_0.log path = %@",filePath);
-                formatstring = [NSString stringWithFormat:@"%@\n%@",[self.class appBaseInfoString],formatstring];
+        NSString *typeDesc = [NSString stringWithFormat:@"%zd",type];
+        if (self.typeDescriptionConfig && self.typeDescriptionConfig.count) {
+            if ([self.typeDescriptionConfig.allKeys containsObject:@(type)]) {
+                typeDesc = self.typeDescriptionConfig[@(type)];
             }
-            NSFileHandle *fileHandler = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
-            [fileHandler seekToEndOfFile];
-            [fileHandler writeData:[formatstring dataUsingEncoding:NSUTF8StringEncoding]];
-            [fileHandler closeFile];
         }
         
-        NSString *fileName = [NSString stringWithFormat:@"%@_%zd.txt", self.currentlaunchTime,type];
+        NSString *formatstring = [NSString stringWithFormat:@"%@ TYPE:%@ %@ %@\r",timestamp, typeDesc, getFileNameAndFunctionFromLocation(loc), string];
+        // NSString *fileName = [NSString stringWithFormat:@"%@_%@.txt", self.currentlaunchTime,typeDesc];
+        // 统一写入一个log文件
+        NSString *fileName = [NSString stringWithFormat:@"%@.log", self.currentlaunchTime];
         NSString *filePath = [self.currentLogsDirectory stringByAppendingPathComponent:fileName];
         if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
             [[NSFileManager defaultManager] createFileAtPath:filePath contents:nil attributes:nil];
             formatstring = [NSString stringWithFormat:@"%@\n%@",[self.class appBaseInfoString],formatstring];
-            NSLog(@" ========== createFileAtPath filePath = %@",filePath);
         }
+        
         NSFileHandle *fileHandler = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
         [fileHandler seekToEndOfFile];
         [fileHandler writeData:[formatstring dataUsingEncoding:NSUTF8StringEncoding]];
@@ -197,7 +176,6 @@ static dispatch_queue_t writeLogQueue;
         NSUInteger deleteStartIndex = _maximumNumberOfLogsDirectories;
         for (NSUInteger index = deleteStartIndex; index < sortedFileDirs.count ; index ++) {
             NSString *timeDirKey = sortedFileDirs[index];
-            NSLog(@" delete timeDirName = %@",timeDirKey);
             NSString *timeDirPath = [self.logsDirectory stringByAppendingPathComponent:timeDirKey];
             if (sk_isDirExistAtPath(timeDirPath)) {
                 sk_DeleteAllFileAtPath(timeDirPath);

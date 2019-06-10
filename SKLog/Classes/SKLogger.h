@@ -40,8 +40,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 支持自定义的Log时间格式
 @property (nonatomic, strong) NSDateFormatter *logDateFormatter;
 
-/// Log文件夹名称, 默认使用时格式@"yyyy-MM-dd HH:mm:ss"
+/// 支持自定义Log文件夹名称, 默认使用时格式@"yyyy-MM-dd HH:mm:ss"
 @property (nonatomic, strong) NSDateFormatter *logDirDateFormatter;
+
+/// 自定义type说明 ,Example: @{ @(11):@"PK赛", @(22):@"答题模式" };
+@property (nonatomic, strong) NSDictionary <NSNumber *, NSString *> *typeDescriptionConfig;
 
 /// 记录的文件夹最大数 ，default = 10
 @property (atomic, assign, readwrite) NSUInteger maximumNumberOfLogsDirectories;
@@ -62,8 +65,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXTERN void SKDebugLog(NSInteger type, SKLocation location, NSString *format, ...);
 
-FOUNDATION_EXTERN void SKLogging(NSInteger type, SKLocation location, NSArray *params);
-
 @end
 
 NS_ASSUME_NONNULL_END
@@ -78,6 +79,4 @@ NS_ASSUME_NONNULL_END
 ///  .../SKLog/2019-05-31-14:03:58/
 ///  .../SKLog/2019-05-31-14:04:11/
 
-///  .../SKLog/2019-05-31-14:01:58/2019-05-31-14:01:58_0.log
-///  .../SKLog/2019-05-31-14:01:58/2019-05-31-14:01:58_1.log
-///  .../SKLog/2019-05-31-14:01:58/2019-05-31-14:01:58_2.log
+///  .../SKLog/2019-05-31-14:01:58/2019-05-31-14:01:58.log

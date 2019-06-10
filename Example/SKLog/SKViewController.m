@@ -68,6 +68,7 @@
         
         SKLogTextViewController *controller = [[SKLogTextViewController alloc] init];
         NSString *dirname = [[path componentsSeparatedByString:@"."] firstObject];
+        SKLog(@"选中了%@",dirname);
         dirname = [[dirname componentsSeparatedByString:@"_"] firstObject];
         controller.logPath = [[[SKLogger sharedInstance].logsDirectory stringByAppendingPathComponent:dirname] stringByAppendingPathComponent:path];
         [self.navigationController pushViewController:controller animated:YES];

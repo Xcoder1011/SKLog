@@ -16,11 +16,19 @@
     
     [[SKLogger sharedInstance] enable];
   
+    NSDictionary *typeConfig = @{
+                                 @(11):@"PK赛",
+                                 @(22):@"答题模式"
+                                 };
+    [[SKLogger sharedInstance] setTypeDescriptionConfig:typeConfig];
+    
     SKLog(@"%@==%@ = %@ -- %@", [NSString stringWithFormat:@"SKAppDelegate"],@"wushangkun", self, self.window.backgroundColor);
     
     SKLog(@"默认的log使用方式", @"didFinishLaunchingWithOptions");
     
-    SKLogg(12,@"这是一个type = 12 的log");
+    SKLogg(11,@"这是一个PK赛模块的log");
+
+    SKLogg(22,@"这是一个type = 12 的log");
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         NSLog(@"sortedLogDirectorieNames = %@",[SKLogger sortedLogDirectorieNames]);
