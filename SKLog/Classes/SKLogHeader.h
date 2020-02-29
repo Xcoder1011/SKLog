@@ -24,6 +24,7 @@ static inline SKLocation SKLocationMake(char const *file, int line,char const *f
 
 #define SKLOCATION() SKLocationMake(__FILE__, __LINE__, __func__)
 
+typedef void(^SKMultiSelectLogFileBlock)(NSArray *fileNames, NSArray *filePaths);
 
 static inline NSDictionary *sk_AppBaseInfos() {
     

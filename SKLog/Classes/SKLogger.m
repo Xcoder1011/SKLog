@@ -6,6 +6,7 @@
 //
 
 #import "SKLogger.h"
+#import "SKUploadLogController.h"
 
 void SKDebugLog(NSInteger type, SKLocation location, NSString *format, ...) {
 
@@ -215,6 +216,23 @@ static dispatch_queue_t writeLogQueue;
             [self deleteOldLogsDirectories];
         });
     }
+}
+
++ (void)toUploadLogs:(SKMultiSelectLogFileBlock)selectBlock
+  fromViewController:(UIViewController *)fromController {
+   
+    [self toUploadLogs:selectBlock maxSelectFilesCount:5 fromViewController:fromController];
+}
+
++ (void)toUploadLogs:(SKMultiSelectLogFileBlock)selectBlock
+ maxSelectFilesCount:(NSUInteger)maxSelectFilesCount
+  fromViewController:(UIViewController *)fromController {
+    
+    SKUploadLogController *controller = [[SKUploadLogController alloc] init];
+    controller.selectLogFileBlock = selectBlock;
+    controller.maxSelectFilesCount = maxSelectFilesCount;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+    [fromController presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark -- getter

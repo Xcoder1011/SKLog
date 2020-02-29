@@ -61,6 +61,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// 打开记录日志模式
 - (void)enable;
 
+/// 上传日志， 支持多选, 默认最大可选择的文件数量为 5
++ (void)toUploadLogs:(SKMultiSelectLogFileBlock)selectBlock
+  fromViewController:(UIViewController *)fromController;
+
+/// 上传日志， 支持多选
++ (void)toUploadLogs:(SKMultiSelectLogFileBlock)selectBlock
+ maxSelectFilesCount:(NSUInteger)maxSelectFilesCount
+  fromViewController:(UIViewController *)fromController;
+
 - (void)parseStringWithLocation:(SKLocation)loc type:(NSInteger)type string:(NSString *)string;
 
 FOUNDATION_EXTERN void SKDebugLog(NSInteger type, SKLocation location, NSString *format, ...);

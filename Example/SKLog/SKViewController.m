@@ -18,12 +18,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.title = @"SKLog";
     if (!_dataArray) {
         _dataArray = [SKLogger sortedLogDirectoriePaths];
     }
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"upload" style:UIBarButtonItemStylePlain target:self action:@selector(uploadLogs)];
     
-    self.title = @"SKLog";
+    [self uploadLogs];
+}
+
+- (void)uploadLogs {
+    
+    [SKLogger toUploadLogs:^(NSArray *fileNames, NSArray *filePaths) {
+       
+        NSLog(@"fileNames = %@\nfilePaths = %@",fileNames,filePaths);
+        
+    } fromViewController:self];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

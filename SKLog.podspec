@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SKLog'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'iOS Very Lightweight Logging System.'
 
 s.frameworks   = 'Foundation'

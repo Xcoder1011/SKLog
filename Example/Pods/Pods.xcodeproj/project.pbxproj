@@ -16,6 +16,10 @@
 		AB3158BC9F08E6EB4F5C3530F8EB9037 /* Pods-SKLog_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 95D46C3A7264EB3A195DD83E3FFFBDAD /* Pods-SKLog_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B09FDEB83E6AE519D557B30732417417 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		B1E8ED48BCC0C5DB34C6422A9A09F65F /* SKLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 59AE2FECCF79FFFD9BA23DE8C1915FE3 /* SKLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC67F8C0240AA8130009B1AC /* SKUploadLogController.h in Headers */ = {isa = PBXBuildFile; fileRef = BC67F8BC240AA8130009B1AC /* SKUploadLogController.h */; };
+		BC67F8C1240AA8130009B1AC /* SKPreviewLogController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC67F8BD240AA8130009B1AC /* SKPreviewLogController.m */; };
+		BC67F8C2240AA8130009B1AC /* SKUploadLogController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC67F8BE240AA8130009B1AC /* SKUploadLogController.m */; };
+		BC67F8C3240AA8130009B1AC /* SKPreviewLogController.h in Headers */ = {isa = PBXBuildFile; fileRef = BC67F8BF240AA8130009B1AC /* SKPreviewLogController.h */; };
 		CFDA5F3C36F936B4688386AA7F3CFAFC /* Pods-SKLog_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A5484F2796BEEC8A81EC76C5207A7F4F /* Pods-SKLog_Tests-dummy.m */; };
 		D2C42880EFC15C7C9037512DA0832020 /* SKLogHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = DA01A2D0317339E102AA37152776B276 /* SKLogHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E323AB708D96841D1EDB38244281B2A3 /* Pods-SKLog_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC4673D140414F16FE63195EA51C54C /* Pods-SKLog_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,6 +68,10 @@
 		95D46C3A7264EB3A195DD83E3FFFBDAD /* Pods-SKLog_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SKLog_Tests-umbrella.h"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A5484F2796BEEC8A81EC76C5207A7F4F /* Pods-SKLog_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SKLog_Tests-dummy.m"; sourceTree = "<group>"; };
+		BC67F8BC240AA8130009B1AC /* SKUploadLogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKUploadLogController.h; path = SKLog/Classes/SKUploadLogController.h; sourceTree = "<group>"; };
+		BC67F8BD240AA8130009B1AC /* SKPreviewLogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKPreviewLogController.m; path = SKLog/Classes/SKPreviewLogController.m; sourceTree = "<group>"; };
+		BC67F8BE240AA8130009B1AC /* SKUploadLogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKUploadLogController.m; path = SKLog/Classes/SKUploadLogController.m; sourceTree = "<group>"; };
+		BC67F8BF240AA8130009B1AC /* SKPreviewLogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKPreviewLogController.h; path = SKLog/Classes/SKPreviewLogController.h; sourceTree = "<group>"; };
 		C66F25234F8E28C850FF204D79AAC77C /* Pods-SKLog_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SKLog_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		CEE02368A95BDAD97B0945D2F7E43FFF /* Pods_SKLog_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKLog_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D337518D1B659237B2FD3869789C9F13 /* Pods-SKLog_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SKLog_Example-dummy.m"; sourceTree = "<group>"; };
@@ -109,6 +117,10 @@
 				59AE2FECCF79FFFD9BA23DE8C1915FE3 /* SKLogger.h */,
 				948CEE3D0A4EA7BA7E06D8EF5FD398A7 /* SKLogger.m */,
 				DA01A2D0317339E102AA37152776B276 /* SKLogHeader.h */,
+				BC67F8BF240AA8130009B1AC /* SKPreviewLogController.h */,
+				BC67F8BD240AA8130009B1AC /* SKPreviewLogController.m */,
+				BC67F8BC240AA8130009B1AC /* SKUploadLogController.h */,
+				BC67F8BE240AA8130009B1AC /* SKUploadLogController.m */,
 				A840963B2F2C5A5CFC098EB9BB59B55C /* Pod */,
 				D712E83FD70B349A6E7F200A506505DD /* Support Files */,
 			);
@@ -235,7 +247,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				22A1BA931CD9723AA6CE88F31D331108 /* SKLog-umbrella.h in Headers */,
+				BC67F8C3240AA8130009B1AC /* SKPreviewLogController.h in Headers */,
 				B1E8ED48BCC0C5DB34C6422A9A09F65F /* SKLogger.h in Headers */,
+				BC67F8C0240AA8130009B1AC /* SKUploadLogController.h in Headers */,
 				D2C42880EFC15C7C9037512DA0832020 /* SKLogHeader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,6 +396,8 @@
 			files = (
 				913619715F73BE42CFC227F4706C8B9D /* SKLog-dummy.m in Sources */,
 				2BF701FFEDA876E602408BC83582E795 /* SKLogger.m in Sources */,
+				BC67F8C1240AA8130009B1AC /* SKPreviewLogController.m in Sources */,
+				BC67F8C2240AA8130009B1AC /* SKUploadLogController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
