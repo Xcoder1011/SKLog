@@ -24,7 +24,7 @@ pod 'SKLog'
 
 ## Author
 
-Xcoder1011, shagnkunwu@msn.com
+Xcoder1011, shangkunwu@msn.com
 
 ## License
 
